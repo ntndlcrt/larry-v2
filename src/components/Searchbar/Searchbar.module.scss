@@ -1,0 +1,60 @@
+.searchbar {
+    @apply fixed z-[300] top-8 left-1/2 -translate-x-1/2;
+    @apply flex flex-col;
+    @apply bg-gray-50;
+    @apply py-1 px-2 rounded-[1.2rem];
+    @apply transition-all;
+    @apply w-[calc(100%-3.2rem)] h-[5.8rem];
+    @apply border border-indigo-100;
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease-in-out;
+
+    &Expanded {
+        @apply top-0;
+        @apply w-full h-full;
+        @apply py-8 px-4;
+        @apply bg-indigo-50;
+        @apply rounded-none;
+
+        .searchbarHeaderToggleSearch {
+            @apply invisible opacity-0 translate-y-2;
+        }
+
+        .searchbarHeaderToggleReturn {
+            @apply visible opacity-100 translate-y-0;
+        }
+    }
+
+    &Header {
+        @apply flex justify-between items-center;
+
+        &Toggle {
+            @apply text-gray-700;
+            @apply mr-2;
+            @apply relative;
+
+            &Search,
+            &Return {
+                @apply transition-all duration-300;
+            }
+
+            &Search {
+                @apply text-20;
+                @apply p-[0.4rem];
+            }
+
+            &Return {
+                @apply invisible opacity-0 translate-y-2;
+                @apply text-24;
+                @apply p-[0.2rem];
+                @apply absolute left-0 top-0;
+            }
+        }
+
+        &Input {
+            @apply flex-1;
+            @apply bg-transparent;
+            @apply border-0 outline-none;
+            @apply py-1;
+        }
+    }
+}

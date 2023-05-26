@@ -1,0 +1,32 @@
+.tabsNavigation {
+    backdrop-filter: saturate(180%) blur(0.5rem);
+    background: hsla(0, 0%, 100%, 0.8);
+
+    @apply border-t border-gray-200;
+    @apply pt-1 pb-4;
+    @apply fixed bottom-0 left-0 right-0 z-[200];
+    @apply w-full;
+    @apply flex justify-around items-center;
+
+    &Icon {
+        @apply text-24 text-center;
+        @apply p-1;
+        @apply relative;
+        @apply flex flex-col items-center justify-center;
+
+        &::before {
+            @apply absolute left-1/2 -bottom-0_5 -translate-x-1/2;
+            @apply h-0_5 w-0;
+            @apply rounded-full;
+            @apply bg-indigo-300;
+            content: '';
+            @apply transition-all;
+        }
+
+        &Active {
+            &::before {
+                @apply w-3;
+            }
+        }
+    }
+}
