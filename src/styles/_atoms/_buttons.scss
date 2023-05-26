@@ -1,0 +1,21 @@
+@layer components {
+    .button {
+        @apply bg-white rounded-full border border-black;
+        @apply box-border block;
+        @apply cursor-pointer;
+        @apply py-1 px-4;
+        @apply uppercase font-medium;
+        @apply transition transition-all;
+        box-shadow: 0.6rem 0.6rem 0 black;
+        width: fit-content;
+
+        &:hover {
+            box-shadow: 0.3rem 0.3rem 0 black;
+            transform: translate(0.3rem, 0.3rem);
+        }
+
+        &.wide {
+            @apply px-6;
+        }
+    }
+}

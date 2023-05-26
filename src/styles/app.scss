@@ -2,10 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '_atoms/buttons';
+
 html {
     font-size: 62.5%;
 }
 
 body {
-    @apply text-16;
+    @apply text-16 leading-[1.3] font-raleway;
 }

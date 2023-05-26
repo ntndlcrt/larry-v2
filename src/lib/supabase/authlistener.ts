@@ -1,28 +1,10 @@
 'use client'
 
-import supabase from '@/lib/supabase/client'
+import supabase from './client'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { Raleway } from 'next/font/google'
 
-import '@/styles/app.scss'
-
-// export const metadata = {
-//     title: 'Larry',
-//     description:
-//         'Your personal web keeper to save, organize and share your links.',
-// }
-
-const raleway = Raleway({
-    subsets: ['latin'],
-    variable: '--font-raleway',
-})
-
-export default function RootLayout({
-    children,
-}: {
-    children: React.ReactNode
-}) {
+function AuthListener() {
     const router = useRouter()
 
     async function createProfileIfNotExists(
@@ -76,9 +58,7 @@ export default function RootLayout({
         })
     }, [])
 
-    return (
-        <html lang="fr" className={raleway.className}>
-            <body>{children}</body>
-        </html>
-    )
+    return null
 }
+
+export default AuthListener
