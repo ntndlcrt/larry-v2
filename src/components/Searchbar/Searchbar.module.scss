@@ -6,7 +6,8 @@
     @apply transition-all;
     @apply w-[calc(100%-3.2rem)] h-[5.8rem];
     @apply border border-indigo-100;
-    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease-in-out;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+        background 0.3s ease-in-out;
 
     &Expanded {
         @apply top-0;

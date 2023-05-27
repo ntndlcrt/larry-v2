@@ -20,7 +20,7 @@ export default function TabsNavigation() {
                 }`}
             >
                 <BsCollection />
-                <span className="text-12">Pages</span>
+                <span className="text-12 mt-0_5">Pages</span>
             </Link>
             <Link
                 href="/tabs/collections"
@@ -31,7 +31,7 @@ export default function TabsNavigation() {
                 }`}
             >
                 <BsBoxSeam />
-                <span className="text-12">Collections</span>
+                <span className="text-12 mt-0_5">Collections</span>
             </Link>
             <Link
                 href="/tabs/account"
@@ -42,7 +42,7 @@ export default function TabsNavigation() {
                 }`}
             >
                 <BsPersonSquare />
-                <span className="text-12">Compte</span>
+                <span className="text-12 mt-0_5">Compte</span>
             </Link>
         </div>
     )

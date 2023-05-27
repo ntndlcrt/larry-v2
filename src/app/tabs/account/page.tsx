@@ -50,17 +50,19 @@ export default function TabAccount() {
     }, [])
 
     return (
-        <div className="pt-10 px-2 flex flex-col items-center text-center">
+        <div className="pt-10 px-2 flex flex-col items-center text-center h-[80vh]">
             <Avatar src={profile?.avatar_url} />
-            <h1 className="text-20 font-bold mt-4 mb-1">
+            <h1 className="text-20 font-bold mt-3 mb-1">
                 Bienvenue {profile?.full_name} !
             </h1>
             <p className="mb-4">
                 Vous êtes authentifié avec le compte Google {profile?.email}
             </p>
-            <Larry svgId="coffee" />
+            <div className="aspect-square flex-1 max-w-full">
+                <Larry svgId="coffee" />
+            </div>
             <button
-                className="button block mt-4"
+                className="button block mt-3"
                 onClick={async () => await supabase.auth.signOut()}
             >
                 Déconnexion
