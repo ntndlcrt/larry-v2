@@ -1,0 +1,29 @@
+.pageActions {
+    @apply fixed left-0 right-0 bottom-0 z-[500];
+    @apply rounded-[0.8rem];
+    @apply bg-transparent;
+
+    &::after {
+        @apply block;
+        @apply absolute top-0 -translate-y-1/2;
+        @apply w-screen h-[400vh];
+        @apply bg-[#00000055];
+        content: "";
+    }
+
+    &Header {
+        @apply relative z-[600];
+        @apply p-2;
+        @apply border-b border-white;
+        @apply bg-indigo-50;
+        @apply rounded-tl-[1.2rem] rounded-tr-[1.2rem];
+        @apply overflow-hidden;
+        @apply text-14
+    }
+
+    &Content {
+        @apply relative z-[600];
+        @apply px-2 pt-2 pb-10;
+        @apply bg-indigo-50;
+    }
+}

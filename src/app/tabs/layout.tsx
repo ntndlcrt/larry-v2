@@ -14,7 +14,18 @@ export default function TabsLayout({
 
     return (
         <>
-            {pathname !== '/tabs/account' && <Searchbar />}
+            {pathname !== '/tabs/account' &&
+                !pathname.match(/^\/tabs\/pages\/[\w-]+$/) && (
+                    <Searchbar
+                        table={
+                            pathname.includes('pages')
+                                ? 'pages'
+                                : pathname.includes('collections')
+                                ? 'collections'
+                                : ''
+                        }
+                    />
+                )}
             <main>{children}</main>
             <TabsNavigation />
         </>

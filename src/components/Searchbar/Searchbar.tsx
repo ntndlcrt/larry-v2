@@ -6,7 +6,7 @@ import { RxArrowLeft } from 'react-icons/rx'
 
 import styles from './Searchbar.module.scss'
 
-export default function SearchBar() {
+export default function SearchBar({ table }: { table: string }) {
     const [expanded, setExpanded] = useState(false)
     const [toggled, setToggled] = useState(false)
     const [search, setSearch] = useState('')
