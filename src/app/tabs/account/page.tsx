@@ -2,33 +2,26 @@
 
 import { useState, useEffect } from 'react'
 
+import { Database } from '@/lib/supabase/types.spec'
 import supabase from '@/lib/supabase/client'
 import Avatar from '@/components/UI/Avatar'
 import Larry from '@/components/UI/Larry'
 
-type Profile = {
-    email: string
-    full_name: string
-    avatar_url: string
-}
+type Profile = Database['public']['Tables']['profiles']['Row']
 
 export default function TabAccount() {
     const [profile, setProfile] = useState<Profile | null>(null)
 
     const getProfile = async () => {
         try {
-            let { data, error } = await supabase.auth.getUser()
-
-            if (error) {
-                throw error
-            }
-
-            const user = data.user
+            const {
+                data: { user },
+            } = await supabase.auth.getUser()
 
             if (user) {
                 let { data, error, status } = await supabase
                     .from('profiles')
-                    .select(`email, full_name, avatar_url`)
+                    .select('*')
                     .eq('id', user.id)
                     .single()
 
@@ -51,7 +44,7 @@ export default function TabAccount() {
 
     return (
         <div className="pt-10 px-2 flex flex-col items-center text-center h-[80vh]">
-            <Avatar src={profile?.avatar_url} />
+            <Avatar src={profile?.avatar_url ?? ''} />
             <h1 className="text-20 font-bold mt-3 mb-1">
                 Bienvenue {profile?.full_name} !
             </h1>
