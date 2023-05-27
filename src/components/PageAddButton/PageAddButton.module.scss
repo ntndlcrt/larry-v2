@@ -1,0 +1,54 @@
+.pageAddButton {
+    @apply fixed right-2 bottom-15 z-[250];
+
+    * {
+        @apply transition-all duration-300;
+    }
+
+    &Expanded {
+        .pageAddButtonOverlay {
+            @apply opacity-30 visible;
+        }
+
+        .pageAddButtonForm {
+            @apply -translate-x-0;
+            @apply opacity-100 visible;
+        }
+    }
+
+    &Icon {
+        @apply w-5 h-5;
+        @apply rounded-full;
+        @apply bg-indigo-50;
+        @apply flex items-center justify-center;
+        @apply text-24 text-indigo-500;
+        @apply shadow-md;
+        @apply relative z-[300];
+    }
+    
+    &Form {
+        @apply absolute right-0 top-0 z-[300] -translate-y-[110%] translate-x-full;
+        @apply bg-white;
+        @apply shadow-md;
+        @apply flex flex-col;
+        @apply pt-2 px-2 pb-3;
+        @apply rounded-[0.8rem];
+        @apply w-[calc(100vw-3.2rem)];
+        @apply invisible opacity-0;
+
+        textarea {
+            @apply bg-transparent;
+            @apply font-raleway;
+            @apply outline-none;
+            @apply pb-1 mb-2;
+            @apply border-b border-gray-700;
+            resize: none;
+        }
+    }
+
+    &Overlay {
+        @apply block;
+        @apply fixed h-screen w-screen inset-0;
+        @apply bg-black opacity-0 invisible;
+    }
+}
