@@ -13,9 +13,9 @@ export default function Page(
     return (
         <Link
             href={`/tabs/pages/${id}`}
-            className="w-full pb-2 mb-2 px-2 last:mb-0 last:pb-0 border-b border-gray-100 last:border-0"
+            className="w-full pb-3 mb-3 px-2 last:mb-0 last:pb-0 border-b border-gray-100 last:border-0"
         >
-            <p className="text-indigo-400 text-13 mb-0_5">
+            <p className="text-indigo-400 text-13 mb-1">
                 {formatTimestamp(created_at!)}
             </p>
             <div className="w-full aspect-[2/1] relative rounded-[0.8rem] overflow-hidden mb-2">
