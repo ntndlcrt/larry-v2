@@ -39,7 +39,7 @@ export default function TabCollections() {
             <div className="grid grid-cols-2 gap-3 px-2">
                 {collections &&
                     collections.map((collection) => (
-                        <Collection {...collection} />
+                        <Collection {...collection} key={collection.id} />
                     ))}
             </div>
             <AddItemButton type="collection" />
