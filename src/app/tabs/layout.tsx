@@ -15,7 +15,8 @@ export default function TabsLayout({
     return (
         <>
             {pathname !== '/tabs/account' &&
-                !pathname.match(/^\/tabs\/pages\/[\w-]+$/) && (
+                !pathname.match(/^\/tabs\/pages\/[\w-]+$/) &&
+                !pathname.match(/^\/tabs\/collections\/[\w-]+$/) && (
                     <>
                         <div className="fixed top-0 w-full h-16 z-50 bg-gradient-to-b from-indigo-100 to-[rgba(224 231 255 0)]"></div>
                         <Searchbar

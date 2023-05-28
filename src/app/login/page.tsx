@@ -11,7 +11,12 @@ export default function Login() {
 
     return (
         <div>
-            <button onClick={signInWithGoogle}>Sign in with Google</button>
+            <button
+                className="px-2 text-center w-full py-18"
+                onClick={signInWithGoogle}
+            >
+                Sign in with Google
+            </button>
         </div>
     )
 }
