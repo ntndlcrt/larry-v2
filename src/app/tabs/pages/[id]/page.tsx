@@ -5,16 +5,23 @@ import Link from 'next/link'
 import { FiEdit } from 'react-icons/fi'
 import { RxExternalLink } from 'react-icons/rx'
 import { BsFolderPlus, BsTrash3, BsArrowLeftSquare } from 'react-icons/bs'
+import { useRouter } from 'next/navigation'
+import { Browser } from '@capacitor/browser'
+import { Dialog } from '@capacitor/dialog'
 
 import { Database } from '@/lib/supabase/types.spec'
 import supabase from '@/lib/supabase/client'
 import formatTimestamp from '@/utils/formatTimestamp'
-import PageActions from '@/components/PageActions'
 
 export default function TabPageView({ params }: { params: any }) {
+    const router = useRouter()
     const [page, setPage] = useState(
         null as Database['public']['Tables']['pages']['Row'] | null
     )
+
+    const openPage = async () => {
+        page ? await Browser.open({ url: page.url }) : ''
+    }
 
     const getPage = async () => {
         const { data, error } = await supabase
@@ -28,6 +35,28 @@ export default function TabPageView({ params }: { params: any }) {
         }
 
         setPage(data)
+    }
+
+    const deletePage = async () => {
+        const { error } = await supabase
+            .from('pages')
+            .delete()
+            .eq('id', params.id)
+
+        if (error) {
+            throw error
+        }
+
+        showDeleteConfirmation()
+    }
+
+    const showDeleteConfirmation = async () => {
+        const { value } = await Dialog.confirm({
+            title: 'Page supprimmée',
+            message: `La page a correctement été supprimmée de votre liste. Larry est doué pour le ménage.`,
+        })
+
+        router.push('/tabs/pages')
     }
 
     useEffect(() => {
@@ -76,15 +105,15 @@ export default function TabPageView({ params }: { params: any }) {
                     </span>
                 </div>
                 <div className="flex flex-col">
-                    <Link
-                        href={`/pages/${page?.id}/edit`}
+                    <div
+                        onClick={() => openPage()}
                         className="pb-1_5 border-b border-indigo-50 px-3 flex items-center"
                     >
                         <RxExternalLink className="mr-3 text-24" />
                         <span className="leading-[1]">
                             Ouvrir dans le navigateur
                         </span>
-                    </Link>
+                    </div>
                     <Link
                         href={`/pages/${page?.id}/edit`}
                         className="py-1_5 border-b border-indigo-50 px-3 flex items-center"
@@ -103,15 +132,15 @@ export default function TabPageView({ params }: { params: any }) {
                             Éditer la page sauvegardée
                         </span>
                     </Link>
-                    <Link
-                        href={`/pages/${page?.id}/edit`}
+                    <div
+                        onClick={() => deletePage()}
                         className="pt-1_5 px-3 flex items-center"
                     >
                         <BsTrash3 className="mr-3 text-24" />
                         <span className="leading-[1]">
                             Supprimmer la page sauvegardée
                         </span>
-                    </Link>
+                    </div>
                 </div>
             </div>
         </div>

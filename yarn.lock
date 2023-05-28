@@ -1016,6 +1016,11 @@
   resolved "https://registry.npmjs.org/@capacitor/android/-/android-5.0.4.tgz"
   integrity sha512-WtXmjRQ0bCtFkwBID/jVEPbqnh0uR9wTSgkW7QNzogDuA0iyJJI2nxDfT9knUmg6mne/CnfTXg093zzdc13C0w==
 
+"@capacitor/browser@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@capacitor/browser/-/browser-5.0.2.tgz#95eab87d9642d6569ca07f78d617075b31f62cfd"
+  integrity sha512-chupqeXz3RopPpT+Uhcz+z81uc2HZqIFbcAy9mlrdJj10iCE53JRjeZDVlMmcL5OxqfGPl9NKTRNhGQvD6sIQQ==
+
 "@capacitor/cli@^5.0.4":
   version "5.0.4"
   resolved "https://registry.npmjs.org/@capacitor/cli/-/cli-5.0.4.tgz"
@@ -1045,6 +1050,11 @@
   integrity sha512-BFvziz9jM87pLHW2sXPNIzwrdmI5mAP0tBsBHgXoCO2+wVdpvIMYCpcst5BuTULaMz5JBFZZ6g6nqwgfs+SMCA==
   dependencies:
     tslib "^2.1.0"
+
+"@capacitor/dialog@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@capacitor/dialog/-/dialog-5.0.2.tgz#375bf09ffa8cc252b789f12f3b646a6bd69fcc4a"
+  integrity sha512-9SCknNv2Z9Q3MazjA2a8uZbbmbsGViO0k6OcKgirccXbJoz0uj2x8XiNqOaqLZKeZn0zSD3Lu7J4eJYmLFH+AQ==
 
 "@capacitor/ios@^5.0.4":
   version "5.0.4"
