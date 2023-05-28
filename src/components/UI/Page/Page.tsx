@@ -1,9 +1,7 @@
 import Link from 'next/link'
-import { useRef } from 'react'
 
 import { Database } from '@/lib/supabase/types.spec'
 import formatTimestamp from '@/utils/formatTimestamp'
-import { FiEdit } from 'react-icons/fi'
 
 export default function Page(
     page: Database['public']['Tables']['pages']['Row']
