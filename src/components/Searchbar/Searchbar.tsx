@@ -14,7 +14,6 @@ export default function SearchBar({ table }: { table: string }) {
     const [toggled, setToggled] = useState(false)
     const [search, setSearch] = useState('')
     const [results, setResults] = useState(null as any)
-    const [loading, setLoading] = useState(false)
 
     const toggleExpanded = () => {
         setExpanded(!expanded)

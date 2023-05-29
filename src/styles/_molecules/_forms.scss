@@ -1,0 +1,24 @@
+@layer components {
+    .form {
+        textarea {
+            @apply outline-none border-b border-gray-200;
+            @apply transition-all;
+            resize: none;
+
+            &:focus, &:active {
+                @apply border-b border-indigo-400;
+            }
+        }
+
+        label {
+            @apply text-gray-400;
+            @apply text-14 uppercase font-medium;
+            @apply mb-2;
+        }
+
+        &__field {
+            @apply flex flex-col;
+            @apply mb-6 last:mb-0;
+        }
+    }
+}

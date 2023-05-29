@@ -115,7 +115,7 @@ export default function TabPageView({ params }: { params: any }) {
                         </span>
                     </div>
                     <Link
-                        href={`/pages/${page?.id}/edit`}
+                        href={`/tabs/pages/${page?.id}/edit`}
                         className="py-1_5 border-b border-indigo-50 px-3 flex items-center"
                     >
                         <BsFolderPlus className="mr-3 text-24" />
@@ -124,7 +124,7 @@ export default function TabPageView({ params }: { params: any }) {
                         </span>
                     </Link>
                     <Link
-                        href={`/pages/${page?.id}/edit`}
+                        href={`/tabs/pages/${page?.id}/update`}
                         className="py-1_5 border-b border-indigo-50 px-3 flex items-center"
                     >
                         <FiEdit className="mr-3 text-24" />
