@@ -1,34 +1,43 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 import supabase from '@/lib/supabase/client'
 
 export default function HHome() {
     const router = useRouter()
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-    const getProfile = async () => {
+    const redirect = async () => {
         const {
             data: { user },
         } = await supabase.auth.getUser()
 
+        console.log(user)
+
         if (user) {
-            setIsLoggedIn(true)
+            const { data, error } = await supabase
+                .from('profiles')
+                .select('*')
+                .eq('id', user.id)
+                .single()
+
+            if (error) {
+                throw error
+            }
+
+            if (!data.has_onboarded) {
+                router.push('/onboarding')
+            } else {
+                router.push('/tabs/pages')
+            }
         } else {
-            setIsLoggedIn(false)
+            router.push('/login')
         }
     }
 
     useEffect(() => {
-        getProfile()
-
-        if (isLoggedIn) {
-            router.push('/tabs/pages')
-        } else {
-            router.push('/login')
-        }
+        redirect()
     }, [])
 
     return null
