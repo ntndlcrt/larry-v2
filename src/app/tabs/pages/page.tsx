@@ -36,7 +36,6 @@ export default function TabPage() {
 
     return (
         <div className="pt-18 flex flex-col items-center pb-18 h-screen overflow-scroll">
-            {/* <div className="fixed top-0 w-full h-16 z-50 bg-gradient-to-b from-indigo-100 to-[rgba(224 231 255 0)]"></div> */}
             {pages && pages.map((page) => <Page key={page.id} {...page} />)}
             <AddItemButton type="page" />
         </div>

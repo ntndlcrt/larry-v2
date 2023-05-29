@@ -8,6 +8,7 @@
     @apply border border-indigo-100;
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1),
         background 0.3s ease-in-out;
+    @apply overflow-hidden;
 
     &Expanded {
         @apply top-0 z-[400];
@@ -56,6 +57,19 @@
             @apply bg-transparent;
             @apply border-0 outline-none;
             @apply py-1_75;
+        }
+    }
+
+    &Results {
+        @apply mt-4;
+        @apply flex flex-col;
+        @apply overflow-y-auto;
+
+        &Item {
+            @apply pb-1 mb-1 last:pb-0 last:mb-0;
+            @apply w-full;
+            @apply border-b border-gray-50 last:border-0;
+            @apply flex items-center;
         }
     }
 }
