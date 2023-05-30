@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { FiEdit } from 'react-icons/fi'
 import { RxExternalLink } from 'react-icons/rx'
 import { BsFolderPlus, BsTrash3, BsArrowLeftSquare } from 'react-icons/bs'
@@ -13,11 +14,17 @@ import { Database } from '@/lib/supabase/types.spec'
 import supabase from '@/lib/supabase/client'
 import formatTimestamp from '@/utils/formatTimestamp'
 
+const AddPageToCollection = dynamic(
+    () => import('@/components/AddPageToCollection'),
+    { ssr: false }
+)
+
 export default function TabPageView({ params }: { params: any }) {
     const router = useRouter()
     const [page, setPage] = useState(
         null as Database['public']['Tables']['pages']['Row'] | null
     )
+    const [addToCollectionOpened, setAddToCollectionOpened] = useState(false)
 
     const openPage = async () => {
         page ? await Browser.open({ url: page.url }) : ''
@@ -114,15 +121,15 @@ export default function TabPageView({ params }: { params: any }) {
                             Ouvrir dans le navigateur
                         </span>
                     </div>
-                    <Link
-                        href={`/tabs/pages/${page?.id}/edit`}
+                    <div
+                        onClick={() => setAddToCollectionOpened(true)}
                         className="py-1_5 border-b border-indigo-50 px-3 flex items-center"
                     >
                         <BsFolderPlus className="mr-3 text-24" />
                         <span className="leading-[1]">
                             Ajouter dans une collection
                         </span>
-                    </Link>
+                    </div>
                     <Link
                         href={`/tabs/pages/${page?.id}/update`}
                         className="py-1_5 border-b border-indigo-50 px-3 flex items-center"
@@ -143,6 +150,12 @@ export default function TabPageView({ params }: { params: any }) {
                     </div>
                 </div>
             </div>
+            {addToCollectionOpened && (
+                <AddPageToCollection
+                    pageId={page!.id}
+                    pageTitle={page!.title ?? ''}
+                />
+            )}
         </div>
     )
 }

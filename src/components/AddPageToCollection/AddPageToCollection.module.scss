@@ -1,0 +1,62 @@
+.addPageToCollection {
+    @apply fixed left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 z-[500];
+    @apply flex flex-col items-center justify-center;
+    @apply w-[90%];
+    @apply transition-all;
+    @apply opacity-0 invisible;
+
+    &Overlay {
+        @apply absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2;
+        @apply w-screen h-screen;
+        @apply bg-black;
+        @apply opacity-0 invisible;
+        content: '';
+        @apply transition-all;
+    }
+
+    &Expanded {
+        @apply visible opacity-100 top-1/2;
+
+        .addPageToCollectionOverlay {
+            @apply visible opacity-30;
+        }
+    }
+
+    &Content {
+        @apply flex flex-col items-center justify-center;
+        @apply w-full;
+        @apply relative;
+        @apply z-[600];
+        @apply bg-white;
+        @apply py-4 px-2;
+        @apply rounded-[1.2rem];
+
+        form {
+            @apply w-full;
+            @apply flex flex-col items-center justify-center;
+
+            select {
+                @apply w-full;
+                @apply p-1 my-4;
+                @apply rounded-md;
+                @apply border border-indigo-200 outline-none;
+                @apply transition-all;
+                @apply focus:border-indigo-400;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+
+                option {
+                    @apply flex items-start text-center;
+
+                    span {
+                        @apply first:pr-2;
+                    }
+                }
+
+                &::-ms-expand {
+                    @apply hidden;
+                }
+            }
+        }
+    }
+}

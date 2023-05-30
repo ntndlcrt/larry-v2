@@ -18,6 +18,7 @@ export default function Onboarding() {
     const [firstSlide, setFirstSlide] = useState(true)
     const [lastSlide, setLastSlide] = useState(false)
     const swiperEl = useRef()
+    const [paddingTop, setPaddingTop] = useState(0)
 
     useEffect(() => {
         Object.assign(swiperEl.current, {
@@ -31,6 +32,12 @@ export default function Onboarding() {
             setFirstSlide(progress === 0)
             setLastSlide(progress === 1)
         })
+
+        // Make the padding be equal to the swiper container height difference with screen divided by two
+        const swiperContainerHeight = swiperEl.current.clientHeight + 64
+        const screenHeight = window.innerHeight
+        const heightDifference = screenHeight - swiperContainerHeight
+        setPaddingTop(heightDifference / 2)
     }, [])
 
     const onboardingSlides = [
@@ -56,7 +63,10 @@ export default function Onboarding() {
     ]
 
     return (
-        <div>
+        <div
+            className="h-screen max-h-screen w-screen pt-10"
+            style={{ paddingTop: paddingTop + 'px' }}
+        >
             <swiper-container
                 slides-per-view="1"
                 speed="400"

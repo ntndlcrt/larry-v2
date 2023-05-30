@@ -1,16 +1,40 @@
-import Larry from '@/components/ui/Larry'
+'use client'
+
+import { useRouter } from 'next/navigation'
+
+import Larry from '@/components/UI/Larry'
 import supabase from '@/lib/supabase/client'
 
-export default function OnboardingSlide({ svgId, content, isFinal = false }) {
+export default function OnboardingSlide({
+    svgId,
+    content,
+    isFinal = false,
+}: {
+    svgId: string
+    content?: string
+    isFinal?: boolean
+}) {
+    const router = useRouter()
+
     const setHasOnboarded = async () => {
+        const {
+            data: { user },
+        } = await supabase.auth.getUser()
+
         const { data, error } = await supabase
             .from('profiles')
             .update({ has_onboarded: true })
-            .eq('id', user.id)
+            .eq('id', user!.id)
+
+        if (error) {
+            throw error
+        }
+
+        router.push('/')
     }
 
     return (
-        <swiper-slide>
+        <swiper-slide className="w-auto flex-shrink-0 h-full max-h-full block">
             <div className="w-full h-full flex flex-col items-center justify-center text-center">
                 <Larry svgId={svgId} />
                 {content && (
@@ -21,10 +45,7 @@ export default function OnboardingSlide({ svgId, content, isFinal = false }) {
                 {isFinal && (
                     <button
                         className="button wide mt-10"
-                        onClick={async () => {
-                            await setHasOnboarded()
-                            location.reload()
-                        }}
+                        onClick={() => setHasOnboarded()}
                     >
                         Lezgongue
                     </button>
