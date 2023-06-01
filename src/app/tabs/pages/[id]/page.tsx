@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic'
 import { FiEdit } from 'react-icons/fi'
 import { RxExternalLink } from 'react-icons/rx'
 import { BsFolderPlus, BsTrash3, BsArrowLeftSquare } from 'react-icons/bs'
+import { MdOutlineGroupAdd } from 'react-icons/md'
 import { useRouter } from 'next/navigation'
 import { Browser } from '@capacitor/browser'
 import { Dialog } from '@capacitor/dialog'
@@ -26,7 +27,8 @@ export default function TabPageView({ params }: { params: any }) {
         null as Database['public']['Tables']['pages']['Row'] | null
     )
     const [addToCollectionOpened, setAddToCollectionOpened] = useState(false)
-    const { setShareItemId, toggleShareItemOpened } = useContext(TabsContext)
+    const { setShareItemId, contextSetShareItemOpened, shareItemOpened } =
+        useContext(TabsContext)
 
     const openPage = async () => {
         page ? await Browser.open({ url: page.url }) : ''
@@ -136,6 +138,21 @@ export default function TabPageView({ params }: { params: any }) {
                         <BsFolderPlus className="mr-3 text-24" />
                         <span className="leading-[1]">
                             Ajouter dans une collection
+                        </span>
+                    </div>
+                    <div
+                        onClick={() => {
+                            setShareItemId({
+                                pageId: page?.id,
+                                collectionId: undefined,
+                            })
+                            contextSetShareItemOpened(true)
+                        }}
+                        className="py-1_5 border-b border-indigo-50 px-3 flex items-center"
+                    >
+                        <MdOutlineGroupAdd className="mr-3 text-24" />
+                        <span className="leading-[1]">
+                            Partager à d&apos;autres utilisateurs
                         </span>
                     </div>
                     <Link

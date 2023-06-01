@@ -6,21 +6,23 @@ import { createContext, useState } from 'react'
 
 import Searchbar from '@/components/Searchbar'
 import AddItemButton from '@/components/AddItemButton'
-import ShareItem from '@/components/Share'
+import ShareItem from '@/components/ShareItem'
 import TabsNavigation from '@/components/TabsNavigation'
 
 type ShareItemId = {
-    pageId: number | null
-    collectionId: number | null
+    pageId: number | undefined
+    collectionId: number | undefined
 }
 interface TabsContextProps {
     setShareItemId: (shareItemId: ShareItemId) => void
-    toggleShareItemOpened: () => void
+    contextSetShareItemOpened: (opened: boolean) => void
+    shareItemOpened: boolean
 }
 
 const TabsContext = createContext<TabsContextProps>({
     setShareItemId: () => {},
-    toggleShareItemOpened: () => {},
+    contextSetShareItemOpened: (opened: boolean) => {},
+    shareItemOpened: false,
 })
 
 export default function TabsLayout({
@@ -34,15 +36,16 @@ export default function TabsLayout({
         {} as ShareItemId
     )
 
-    const toggleShareItemOpened = () => {
-        setShareItemOpened(!shareItemOpened)
+    const contextSetShareItemOpened = (opened: boolean) => {
+        setShareItemOpened(opened)
     }
 
     return (
         <TabsContext.Provider
             value={{
                 setShareItemId,
-                toggleShareItemOpened,
+                contextSetShareItemOpened,
+                shareItemOpened,
             }}
         >
             {pathname === '/tabs/pages' || pathname === '/tabs/collections' ? (

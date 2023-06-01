@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { MdOutlineGroupAdd } from 'react-icons/md'
 import { TfiClose } from 'react-icons/tfi'
 
 import { Database } from '@/lib/supabase/types.spec'
 import supabase from '@/lib/supabase/client'
 import Avatar from '@/components/UI/Avatar'
+import { TabsContext } from '@/app/tabs/layout'
 
 import styles from './ShareItem.module.scss'
 
@@ -14,13 +15,14 @@ export default function ShareItem({
     pageId,
     collectionId,
 }: {
-    pageId: number | null
-    collectionId: number | null
+    pageId: number | undefined
+    collectionId: number | undefined
 }) {
     const [users, setUsers] = useState(
         [] as Database['public']['Tables']['profiles']['Row'][]
     )
-    const [opened, setOpened] = useState(false)
+    const { shareItemOpened, contextSetShareItemOpened } =
+        useContext(TabsContext)
 
     const searchUsers = async (e: any) => {
         const {
@@ -51,6 +53,8 @@ export default function ShareItem({
             if (error) {
                 throw error
             }
+
+            contextSetShareItemOpened(false)
         } else if (collectionId) {
             const { error } = await supabase
                 .from('shared_collections')
@@ -60,17 +64,19 @@ export default function ShareItem({
             if (error) {
                 throw error
             }
+
+            contextSetShareItemOpened(false)
         }
     }
 
     return (
         <div
             className={`${styles.shareItem} ${
-                opened ?? styles.shareItemOpened
+                shareItemOpened ? styles.shareItemOpened : ''
             }`}
         >
             <TfiClose
-                onClick={() => setOpened(false)}
+                onClick={() => contextSetShareItemOpened(false)}
                 className={styles.shareItemClose}
             />
             <div className={styles.shareItemHeader}>
