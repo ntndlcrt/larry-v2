@@ -1,7 +1,5 @@
 'use client'
 
-// @ts-nocheck
-
 import { useState, useRef, useEffect } from 'react'
 import classNames from 'classnames'
 import { TfiArrowLeft, TfiArrowRight } from 'react-icons/tfi'
@@ -17,17 +15,17 @@ register()
 export default function Onboarding() {
     const [firstSlide, setFirstSlide] = useState(true)
     const [lastSlide, setLastSlide] = useState(false)
-    const swiperEl = useRef()
+    const swiperEl = useRef<any>(null)
     const [paddingTop, setPaddingTop] = useState(0)
 
     useEffect(() => {
-        Object.assign(swiperEl.current, {
+        Object.assign(swiperEl.current!, {
             injectStyles: [inlineStyleSwiperPagination],
         })
 
         swiperEl.current.initialize()
 
-        swiperEl.current.addEventListener('progress', (e) => {
+        swiperEl.current.addEventListener('progress', (e: any) => {
             const [swiper, progress] = e.detail
             setFirstSlide(progress === 0)
             setLastSlide(progress === 1)
@@ -86,7 +84,7 @@ export default function Onboarding() {
                         firstSlide && 'text-gray-300'
                     )}
                     onClick={() => {
-                        !firstSlide && swiperEl.current.swiper.slidePrev()
+                        !firstSlide && swiperEl.current?.swiper.slidePrev()
                     }}
                 />
                 <TfiArrowRight

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { FiEdit } from 'react-icons/fi'
@@ -13,6 +13,7 @@ import { Dialog } from '@capacitor/dialog'
 import { Database } from '@/lib/supabase/types.spec'
 import supabase from '@/lib/supabase/client'
 import formatTimestamp from '@/utils/formatTimestamp'
+import { TabsContext } from '@/app/tabs/layout'
 
 const AddPageToCollection = dynamic(
     () => import('@/components/AddPageToCollection'),
@@ -25,6 +26,7 @@ export default function TabPageView({ params }: { params: any }) {
         null as Database['public']['Tables']['pages']['Row'] | null
     )
     const [addToCollectionOpened, setAddToCollectionOpened] = useState(false)
+    const { setShareItemId, toggleShareItemOpened } = useContext(TabsContext)
 
     const openPage = async () => {
         page ? await Browser.open({ url: page.url }) : ''
@@ -45,6 +47,12 @@ export default function TabPageView({ params }: { params: any }) {
     }
 
     const deletePage = async () => {
+        await supabase
+            .from('pages_collections')
+            .delete()
+            .eq('page_id', params.id)
+        await supabase.from('shared_pages').delete().eq('page_id', params.id)
+
         const { error } = await supabase
             .from('pages')
             .delete()

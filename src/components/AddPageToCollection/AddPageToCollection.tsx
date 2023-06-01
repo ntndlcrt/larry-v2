@@ -64,8 +64,8 @@ export default function AddPageToCollection({
         >
             <div className={styles.addPageToCollectionContent}>
                 <span>
-                    Choisissez une collection à laquelle ajouter la page "
-                    {pageTitle}"
+                    Choisissez une collection à laquelle ajouter la page &quot;
+                    {pageTitle}&quot;
                 </span>
                 <form action="#" onSubmit={() => addPageToCollection()}>
                     <select

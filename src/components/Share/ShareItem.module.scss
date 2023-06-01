@@ -1,0 +1,66 @@
+.shareItem {
+    @apply fixed inset-0 z-[1000] translate-y-full;
+    @apply bg-indigo-50;
+    @apply flex flex-col;
+    @apply transition-all duration-300;
+    @apply px-4 pt-6;
+
+    &Opened {
+        @apply translate-y-0;
+    }
+
+    &Close {
+        @apply absolute top-2 right-2;
+        @apply text-gray-700;
+        @apply text-24;
+    }
+
+    &Header {
+        @apply flex items-center;
+        @apply w-full;
+
+        &Icon {
+            @apply text-24;
+            @apply text-gray-700;
+            @apply mr-2;
+        }
+
+        &Input {
+            @apply flex-1;
+            @apply bg-transparent;
+            @apply border-0 outline-none;
+            @apply py-1_75;
+        }
+    }
+
+    &Content {
+        @apply w-full;
+        @apply flex flex-col;
+        @apply overflow-y-auto;
+        @apply mt-4;
+
+        &Item {
+            @apply pb-1 mb-1 last:pb-0 last:mb-0;
+            @apply w-full;
+            @apply border-b border-gray-50 last:border-0;
+            @apply flex items-center;
+
+            &Avatar {
+                @apply w-4 h-4;
+                @apply mr-1_5;
+            }
+
+            &Infos {
+                @apply flex flex-col;
+
+                &FullName {
+                    @apply text-15;
+                }
+
+                &Email {
+                    @apply text-indigo-400 text-13;
+                }
+            }
+        }
+    }
+}

@@ -44,7 +44,9 @@ export default function TabAccount() {
 
     return (
         <div className="pt-10 px-2 flex flex-col items-center text-center h-[80vh]">
-            <Avatar src={profile?.avatar_url ?? ''} />
+            <div className="w-[6.4rem] h-[6.4rem]">
+                <Avatar src={profile?.avatar_url ?? ''} />
+            </div>
             <h1 className="text-20 font-bold mt-3 mb-1">
                 Bienvenue {profile?.full_name} !
             </h1>

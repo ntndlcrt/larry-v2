@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react'
 import { Database } from '@/lib/supabase/types.spec'
 import supabase from '@/lib/supabase/client'
 import Page from '@/components/UI/Page'
-import AddItemButton from '@/components/AddItemButton'
 
 export default function TabPage() {
     const [pages, setPages] = useState(
@@ -37,7 +36,6 @@ export default function TabPage() {
     return (
         <div className="pt-18 flex flex-col items-center pb-18 h-screen overflow-scroll">
             {pages && pages.map((page) => <Page key={page.id} {...page} />)}
-            <AddItemButton type="page" />
         </div>
     )
 }

@@ -8,7 +8,6 @@ import getPageMetadata from '@/utils/getPageMetadata'
 import supabase from '@/lib/supabase/client'
 
 import styles from './AddItemButton.module.scss'
-import { set } from 'date-fns'
 
 export default function AddItemButton({ type }: { type: string }) {
     const [expanded, setExpanded] = useState(false)

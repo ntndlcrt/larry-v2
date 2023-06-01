@@ -1,6 +1,6 @@
 export default function Avatar({ src }: { src: string | undefined }) {
     return (
-        <div className="w-[6.4rem] h-[6.4rem] rounded-[50%] relative overflow-hidden border border-black">
+        <div className="w-full h-full rounded-[50%] relative overflow-hidden border border-black">
             <img
                 src={src}
                 alt=""

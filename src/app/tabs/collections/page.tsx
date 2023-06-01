@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 
 import { Database } from '@/lib/supabase/types.spec'
 import supabase from '@/lib/supabase/client'
-import AddItemButton from '@/components/AddItemButton'
 import Collection from '@/components/UI/Collection'
 
 export default function TabCollections() {
@@ -42,7 +41,6 @@ export default function TabCollections() {
                         <Collection {...collection} key={collection.id} />
                     ))}
             </div>
-            <AddItemButton type="collection" />
         </div>
     )
 }
