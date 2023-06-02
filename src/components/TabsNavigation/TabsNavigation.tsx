@@ -1,6 +1,11 @@
 'use client'
 
-import { BsCollection, BsBoxSeam, BsPersonSquare } from 'react-icons/bs'
+import {
+    BsCollection,
+    BsBoxSeam,
+    BsShare,
+    BsPersonSquare,
+} from 'react-icons/bs'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
@@ -32,6 +37,17 @@ export default function TabsNavigation() {
             >
                 <BsBoxSeam />
                 <span className="text-12 mt-0_5">Collections</span>
+            </Link>
+            <Link
+                href="/tabs/shared"
+                className={`${styles.tabsNavigationIcon} ${
+                    pathname.includes('tabs/shared')
+                        ? styles.tabsNavigationIconActive
+                        : ''
+                }`}
+            >
+                <BsShare />
+                <span className="text-12 mt-0_5">Partagé</span>
             </Link>
             <Link
                 href="/tabs/account"

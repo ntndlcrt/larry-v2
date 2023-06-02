@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import { Database } from '@/lib/supabase/types.spec'
 import formatTimestamp from '@/utils/formatTimestamp'
+import Avatar from '@/components/UI/Avatar'
 
 export default function Page(
     page: Database['public']['Tables']['pages']['Row']
