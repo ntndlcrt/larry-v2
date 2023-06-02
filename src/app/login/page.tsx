@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 
 import supabase from '@/lib/supabase/client'
+import Larry from '@/components/UI/Larry'
 
 export default function Login() {
     const router = useRouter()
@@ -21,12 +22,12 @@ export default function Login() {
     }
 
     return (
-        <div>
-            <button
-                className="px-2 text-center w-full py-18"
-                onClick={signInWithGoogle}
-            >
-                Sign in with Google
+        <div className="w-full flex flex-col justify-center items-center text-center pt-18">
+            <div className="aspect-square w-full mb-10">
+                <Larry svgId="exchanging" />
+            </div>
+            <button className="button text-center" onClick={signInWithGoogle}>
+                Se connecter avec Google
             </button>
         </div>
     )
