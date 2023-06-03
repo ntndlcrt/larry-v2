@@ -13,8 +13,6 @@ export default function HHome() {
             data: { user },
         } = await supabase.auth.getUser()
 
-        console.log(user)
-
         if (user) {
             const { data, error } = await supabase
                 .from('profiles')

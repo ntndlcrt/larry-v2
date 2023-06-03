@@ -7,12 +7,6 @@ import { Raleway } from 'next/font/google'
 
 import '@/styles/app.scss'
 
-// export const metadata = {
-//     title: 'Larry',
-//     description:
-//         'Your personal web keeper to save, organize and share your links.',
-// }
-
 const raleway = Raleway({
     subsets: ['latin'],
     variable: '--font-raleway',

@@ -56,7 +56,6 @@ export default function TabPageEdit({ params }: { params: any }) {
         await (async () => {
             if (image) {
                 let uploadedImage = await uploadImage(page!.id, image)
-                console.log(uploadedImage)
 
                 setPageData({
                     title: event.target[1].value,
