@@ -12,14 +12,10 @@ export default function TabPage() {
     )
 
     const getPages = async () => {
-        const {
-            data: { user },
-        } = await supabase.auth.getUser()
-
         const { data, error } = await supabase
             .from('pages')
             .select('*')
-            .eq('user_id', user!.id)
+            .eq('user_id', 'fff758b7-b477-454a-b01f-9e8b8d74a187')
             .order('created_at', { ascending: false })
 
         if (error) {

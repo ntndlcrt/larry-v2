@@ -25,16 +25,12 @@ export default function ShareItem({
         useContext(TabsContext)
 
     const searchUsers = async (e: any) => {
-        const {
-            data: { user },
-        } = await supabase.auth.getUser()
-
         const { data, error } = await supabase
             .from('profiles')
             .select('*')
             .ilike('full_name', `%${e.target.value}%`)
             // that is not current user id
-            .neq('id', user!.id)
+            .neq('id', 'fff758b7-b477-454a-b01f-9e8b8d74a187')
 
         if (error) {
             throw error

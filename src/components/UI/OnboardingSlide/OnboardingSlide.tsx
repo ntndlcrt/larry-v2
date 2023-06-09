@@ -17,14 +17,10 @@ export default function OnboardingSlide({
     const router = useRouter()
 
     const setHasOnboarded = async () => {
-        const {
-            data: { user },
-        } = await supabase.auth.getUser()
-
         const { data, error } = await supabase
             .from('profiles')
             .update({ has_onboarded: true })
-            .eq('id', user!.id)
+            .eq('id', 'fff758b7-b477-454a-b01f-9e8b8d74a187')
 
         if (error) {
             throw error

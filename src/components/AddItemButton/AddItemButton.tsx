@@ -18,17 +18,13 @@ export default function AddItemButton({ type }: { type: string }) {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault()
-        const {
-            data: { user },
-        } = await supabase.auth.getUser()
-
         if (type === 'page') {
             const metadata = await getPageMetadata(url)
 
             if (metadata) {
                 const { data, error } = await supabase.from('pages').insert([
                     {
-                        user_id: user!.id,
+                        user_id: 'fff758b7-b477-454a-b01f-9e8b8d74a187',
                         title: metadata.title,
                         web_src: metadata.web_src,
                         url: metadata.url,
@@ -46,7 +42,7 @@ export default function AddItemButton({ type }: { type: string }) {
         } else if (type === 'collection') {
             const { data, error } = await supabase.from('collections').insert([
                 {
-                    user_id: user!.id,
+                    user_id: 'fff758b7-b477-454a-b01f-9e8b8d74a187',
                     title,
                     icon: emoji,
                     created_at: new Date().toISOString(),

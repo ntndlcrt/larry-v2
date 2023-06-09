@@ -14,24 +14,18 @@ export default function TabAccount() {
 
     const getProfile = async () => {
         try {
-            const {
-                data: { user },
-            } = await supabase.auth.getUser()
+            let { data, error, status } = await supabase
+                .from('profiles')
+                .select('*')
+                .eq('id', 'fff758b7-b477-454a-b01f-9e8b8d74a187')
+                .single()
 
-            if (user) {
-                let { data, error, status } = await supabase
-                    .from('profiles')
-                    .select('*')
-                    .eq('id', user.id)
-                    .single()
+            if (error && status !== 406) {
+                throw error
+            }
 
-                if (error && status !== 406) {
-                    throw error
-                }
-
-                if (data) {
-                    setProfile(data)
-                }
+            if (data) {
+                setProfile(data)
             }
         } catch (error) {
             console.log(error)
