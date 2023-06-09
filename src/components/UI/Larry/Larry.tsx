@@ -10,10 +10,10 @@ export default function Larry({ svgId }: { svgId: string | undefined }) {
             return <Sonar />
         case 'shopping':
             return <Shopping />
-        case 'exchanging':
-            return <Exchanging />
         case 'teamwork':
             return <Teamwork />
+        case 'exchanging':
+            return <Exchanging />
         case 'coffee':
             return <Coffee />
         default:
