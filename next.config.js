@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
+
+const withPWA = require('next-pwa')({
+    dest: 'public',
+    register: true,
+    skipWaiting: true,
+})
+
 const nextConfig = {
     webpack(config) {
         config.module.rules.push({
@@ -13,7 +20,7 @@ const nextConfig = {
     },
     reactStrictMode: true,
     swcMinify: true,
-    output: 'export',
+    // output: 'export',
     images: {
         unoptimized: true,
         remotePatterns: [
@@ -25,4 +32,4 @@ const nextConfig = {
     },
 }
 
-module.exports = nextConfig
+module.exports = withPWA(nextConfig)
