@@ -21,11 +21,15 @@ const AddPageToCollection = dynamic(
     { ssr: false }
 )
 
+type Page = Database['public']['Tables']['pages']['Row']
+
+type PageWithCollections = Page & {
+    collections: Database['public']['Tables']['collections']['Row'][]
+}
+
 export default function TabPageView({ params }: { params: any }) {
     const router = useRouter()
-    const [page, setPage] = useState(
-        null as Database['public']['Tables']['pages']['Row'] | null
-    )
+    const [page, setPage] = useState(null as PageWithCollections | null)
     const [addToCollectionOpened, setAddToCollectionOpened] = useState(false)
     const { setShareItemId, contextSetShareItemOpened, shareItemOpened } =
         useContext(TabsContext)
@@ -37,7 +41,7 @@ export default function TabPageView({ params }: { params: any }) {
     const getPage = async () => {
         const { data, error } = await supabase
             .from('pages')
-            .select('*')
+            .select('*, collections(*)')
             .eq('id', params.id)
             .single()
 
@@ -116,10 +120,32 @@ export default function TabPageView({ params }: { params: any }) {
                     <h1 className="text-24 font-bold mb-1_5">{page?.title}</h1>
                     <p>{page?.short_desc}</p>
                 </div>
-                <div className="w-full px-3 pb-3 border-b border-indigo-50 mb-6">
-                    <span className="text-14 font-semibold">
-                        Présente dans :
-                    </span>
+                <div className="w-full px-3 pb-3 border-b border-indigo-50 mb-5">
+                    <div className="flex items-center">
+                        <span className="text-14 font-semibold mr-2 mb-1">
+                            Présente dans :
+                        </span>
+                        {page?.collections ? (
+                            page?.collections?.map((collection) => (
+                                <Link
+                                    href={`/tabs/collections/${collection.id}`}
+                                    key={collection.id}
+                                    className="mr-1 py-0_5 px-1_5 rounded-full bg-indigo-50 w-[fit-content] flex items-center mb-1"
+                                >
+                                    <span className="text-14">
+                                        {collection.icon}
+                                    </span>
+                                    <span className="text-13 ml-1">
+                                        {collection.title}
+                                    </span>
+                                </Link>
+                            ))
+                        ) : (
+                            <span className="text-indigo-400">
+                                Aucune collection
+                            </span>
+                        )}
+                    </div>
                 </div>
                 <div className="flex flex-col">
                     <div
