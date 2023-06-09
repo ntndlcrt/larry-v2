@@ -1,12 +1,27 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 import supabase from '@/lib/supabase/client'
 import Larry from '@/components/UI/Larry'
 
 export default function Login() {
     const router = useRouter()
+
+    useEffect(() => {
+        const checkLoggedIn = async () => {
+            const {
+                data: { user },
+            } = await supabase.auth.getUser()
+
+            if (user) {
+                router.push('/')
+            }
+        }
+
+        checkLoggedIn()
+    }, [])
 
     async function signInWithGoogle() {
         const { data, error } = await supabase.auth.signInWithOAuth({
